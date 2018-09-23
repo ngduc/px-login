@@ -1,0 +1,38 @@
+{
+  "name": "px-login",
+  "version": "0.1.0",
+  "description": "px-login - React minimal reusable Login Component.",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "files": [
+    "css",
+    "es",
+    "lib",
+    "umd"
+  ],
+  "scripts": {
+    "build": "nwb build-react-component",
+    "clean": "nwb clean-module && nwb clean-demo",
+    "prepublishOnly": "npm run build",
+    "start": "nwb serve-react-demo",
+    "test": "nwb test-react",
+    "test:coverage": "nwb test-react --coverage",
+    "test:watch": "nwb test-react --server"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "react": "16.x"
+  },
+  "devDependencies": {
+    "nwb": "0.23.x",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
+  },
+  "author": "Duc Nguyen",
+  "homepage": "https://github.com/ngduc/px-login",
+  "license": "MIT",
+  "repository": "https://github.com/ngduc/px-login.git",
+  "keywords": [
+    "react-component"
+  ]
+}
