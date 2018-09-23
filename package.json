@@ -11,7 +11,8 @@
     "umd"
   ],
   "scripts": {
-    "build": "nwb build-react-component",
+    "prepare": "cp ./src/index.tsx ./src/index.js",
+    "build": "npm run prepare && nwb build-react-component",
     "clean": "nwb clean-module && nwb clean-demo",
     "prepublishOnly": "npm run build",
     "start": "nwb serve-react-demo",

@@ -1,20 +1,4 @@
-import * as React from 'react';
-
-// import PxLogin from "./components/PxLogin/PxLogin";
-
-// export default class extends Component {
-//   render() {
-//     return (
-//       <div>
-//         <h2>Welcome to React components</h2>
-//       </div>
-//     );
-//   }
-// }
-
-// export default PxLogin;
-
-// import "./PxLogin.css";
+import React from 'react';
 
 interface IProps {
   renderTitle?: (title: any) => void;
@@ -50,12 +34,10 @@ export default class extends React.Component<IProps> {
   }
 
   init = (props: any) => {
+    console.log(111, props);
     // switch to Register mode if URL includes '/register'
     if (window.location.href.includes('/register')) {
       this.setState({ mode: Mode.REGISTER });
-    }
-    if (props) {
-      // TODO: TBD
     }
   };
 
