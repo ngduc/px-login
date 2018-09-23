@@ -24,9 +24,12 @@
     "react": "16.x"
   },
   "devDependencies": {
+    "@types/react": "^16.4.14",
+    "awesome-typescript-loader": "^5.2.1",
     "nwb": "0.23.x",
     "react": "^16.5.2",
-    "react-dom": "^16.5.2"
+    "react-dom": "^16.5.2",
+    "typescript": "^3.0.3"
   },
   "author": "Duc Nguyen",
   "homepage": "https://github.com/ngduc/px-login",
