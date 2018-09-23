@@ -1,6 +1,6 @@
 {
   "name": "px-login",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "px-login - React minimal reusable Login Component.",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -12,7 +12,8 @@
   ],
   "scripts": {
     "prepare": "cp ./src/index.tsx ./src/index.js",
-    "build": "npm run prepare && nwb build-react-component",
+    "postbuild": "rm -f ./es/*.tsx && rm -f ./lib/*.tsx ",
+    "build": "npm run prepare && nwb build-react-component --copy-files && npm run postbuild",
     "clean": "nwb clean-module && nwb clean-demo",
     "prepublishOnly": "npm run build",
     "start": "nwb serve-react-demo",

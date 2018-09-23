@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 
-import '../../src/PxLogin.css';
+import '../../lib/styles.css';
 import PxLogin from '../../lib';
 
 class Demo extends Component {
