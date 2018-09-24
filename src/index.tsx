@@ -5,9 +5,10 @@ interface IProps {
   labels?: string[];
   action?: string;
   actionRegister?: string;
-  onSubmit?: any;
+  onSubmit?: (formData: any) => void;
 }
 
+// tslint:disable-next-line
 const Mode = {
   LOGIN: 'Login',
   REGISTER: 'Sign Up'
@@ -34,10 +35,11 @@ export default class extends React.Component<IProps> {
   }
 
   init = (props: any) => {
-    console.log(111, props);
     // switch to Register mode if URL includes '/register'
     if (window.location.href.includes('/register')) {
       this.setState({ mode: Mode.REGISTER });
+    }
+    if (props) {
     }
   };
 
@@ -100,6 +102,10 @@ export default class extends React.Component<IProps> {
 
   onPasswordChange = (ev: any) => this.setState({ password: ev.target.value });
 
+  switchMode = (mode: string) => {
+    this.setState({ mode, error: '' });
+  };
+
   render() {
     const { action, actionRegister, renderTitle } = this.props;
     const { mode, username, password, name, error } = this.state;
@@ -108,8 +114,13 @@ export default class extends React.Component<IProps> {
     formAction = mode === Mode.REGISTER && actionRegister ? actionRegister : formAction;
     // const buttonType = action ? 'submit' : 'button';
 
+    let actionProp = {};
+    if (formAction) {
+      actionProp = { action: formAction, method: 'post' };
+    }
+
     return (
-      <form ref={ref => (this.form = ref)} action={formAction} method="post" role="form" className="pxlogin-main">
+      <form ref={ref => (this.form = ref)} {...actionProp} className="pxlogin-main">
         {renderTitle && renderTitle(mode)}
 
         {this.props.children}
@@ -136,7 +147,7 @@ export default class extends React.Component<IProps> {
             <button type="button" onClick={this.onLoginClick}>
               {mode}
             </button>
-            <a onClick={() => this.setState({ mode: Mode.REGISTER })}>Sign Up?</a>
+            <a onClick={() => this.switchMode(Mode.REGISTER)}>Sign Up?</a>
           </footer>
         )}
         {mode === Mode.REGISTER && (
@@ -144,7 +155,7 @@ export default class extends React.Component<IProps> {
             <button type="button" onClick={this.onLoginClick}>
               {mode}
             </button>
-            <a onClick={() => this.setState({ mode: Mode.LOGIN })}>Back to Login</a>
+            <a onClick={() => this.switchMode(Mode.LOGIN)}>Back to Login</a>
           </footer>
         )}
 

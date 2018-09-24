@@ -1,6 +1,6 @@
 {
   "name": "px-login",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "px-login - React minimal reusable Login Component.",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -12,14 +12,15 @@
   ],
   "scripts": {
     "prepare": "cp ./src/index.tsx ./src/index.js",
-    "postbuild": "rm -f ./es/*.tsx && rm -f ./lib/*.tsx ",
+    "postbuild": "rm -f ./src/index.js && rm -f ./es/*.tsx && rm -f ./lib/*.tsx",
     "build": "npm run prepare && nwb build-react-component --copy-files && npm run postbuild",
     "clean": "nwb clean-module && nwb clean-demo",
     "prepublishOnly": "npm run build",
     "start": "nwb serve-react-demo",
     "test": "nwb test-react",
     "test:coverage": "nwb test-react --coverage",
-    "test:watch": "nwb test-react --server"
+    "test:watch": "nwb test-react --server",
+    "demo": "nwb react run demo/src/index.js"
   },
   "dependencies": {},
   "peerDependencies": {
@@ -31,6 +32,10 @@
     "nwb": "0.23.x",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
+    "tslint": "^5.11.0",
+    "tslint-config-airbnb": "^5.11.0",
+    "tslint-config-prettier": "^1.15.0",
+    "tslint-react": "^3.6.0",
     "typescript": "^3.0.3"
   },
   "author": "Duc Nguyen",
