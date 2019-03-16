@@ -1,13 +1,9 @@
 # px-login
 A minimal reusable Login Component.
+- Total bundle size: 1.5 kB gz
+- No dependencies
 
-### Install Dev Tools
-
-`npm install nwb -g`
-
-### Run Demo
-
-`nwb react run demo/src/index.js`
+[Live Demo / Example](https://codesandbox.io/s/vq2mwrno87)
 
 ### Commands
 
