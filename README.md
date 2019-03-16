@@ -13,6 +13,8 @@ A minimal reusable Login Component.
 
 Start DEV - `yarn start`
 
+Start Demo - `yarn demo`
+
 Build - `yarn build`
 
 Test - `yarn test`

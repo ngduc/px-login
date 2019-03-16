@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 interface IProps {
   renderTitle?: (title: any) => void;
@@ -48,7 +48,7 @@ export default class extends React.Component<IProps> {
     if (action) {
       // call onSubmit (optional) & check its return value:
       if (onSubmit) {
-        const result = onSubmit(formData);
+        const result: any = onSubmit(formData);
         if (result) {
           // only submit if returned true
           this.form.submit(); // html-form.submit()
@@ -98,9 +98,11 @@ export default class extends React.Component<IProps> {
 
   onInputChange = (ev: any, field: string) => this.setState({ [field]: ev.target.value });
 
-  onUsernameChange = (ev: any) => this.setState({ username: ev.target.value });
-
-  onPasswordChange = (ev: any) => this.setState({ password: ev.target.value });
+  onKeyUpPassword = (ev: any) => {
+    if (ev.keyCode === 13) {
+      this.onLoginClick();
+    }
+  }
 
   switchMode = (mode: string) => {
     this.setState({ mode, error: '' });
@@ -134,6 +136,7 @@ export default class extends React.Component<IProps> {
           name="password"
           value={password}
           onChange={ev => this.onInputChange(ev, 'password')}
+          onKeyUp={this.onKeyUpPassword}
           type="password"
         />
 
