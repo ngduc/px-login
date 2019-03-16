@@ -5,6 +5,8 @@ A minimal reusable Login Component.
 
 [Live Demo / Example](https://codesandbox.io/s/vq2mwrno87)
 
+[![Screenshot](screenshot.png)](https://codesandbox.io/s/vq2mwrno87)
+
 ### Commands
 
 Start DEV - `yarn start`
