@@ -16,3 +16,10 @@ Start Demo - `yarn demo`
 Build - `yarn build`
 
 Test - `yarn test`
+
+### Features
+
+- Login
+- Sign up
+- Basic validation & error messages
+- Customizeable elements

@@ -9,8 +9,20 @@ class Demo extends Component {
   render() {
     return (
       <div>
-        <h1>px-login Demo</h1>
-        <PxLogin renderTitle={title => <h3>{title}</h3>} onSubmit={console.log} />
+        <div>
+          <h1>px-login demo</h1>
+          <PxLogin onSubmit={console.log} />
+        </div>
+        <div>
+          <h1>Advanced demo</h1>
+          <PxLogin
+            renderTitle={title => <h3>{title}</h3>}
+            values={{ username: 'defaultUsername' }}
+            showError={false}
+            onError={console.log}
+            onSubmit={console.log}
+          />
+        </div>
       </div>
     );
   }

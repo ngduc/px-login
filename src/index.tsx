@@ -6,6 +6,9 @@ interface IProps {
   action?: string;
   actionRegister?: string;
   onSubmit?: (formData: any) => void;
+  values?: any; // example: values={{ username: '...', password: '...' }}
+  showError?: boolean; // default true
+  onError?: (params: any) => void // callback when error occurs
 }
 
 // tslint:disable-next-line
@@ -36,10 +39,12 @@ export default class extends React.Component<IProps> {
 
   init = (props: any) => {
     // switch to Register mode if URL includes '/register'
-    if (window.location.href.includes('/register')) {
+    const { href } = window.location;
+    if (href.includes('/register') || href.includes('/sign-up')) {
       this.setState({ mode: Mode.REGISTER });
     }
-    if (props) {
+    if (props.values) {
+      this.setState({ ...props.values })
     }
   };
 
@@ -72,15 +77,19 @@ export default class extends React.Component<IProps> {
     return username && password && name;
   };
 
+  setError = ({ error, code }:{ error: string, code: string }) => {
+    this.setState({ error });
+    if (this.props.onError) {
+      this.props.onError({ error, code });
+    }
+  }
+
   onLoginClick = () => {
     const { mode, username, password, name } = this.state;
-    let error = '';
     if (mode === Mode.LOGIN && !this.validateLogin()) {
-      error = `Please enter ${this.usernameLabel} and ${this.passwordLabel}.`;
-      this.setState({ error });
+      this.setError({ code: 'REQUIRED_LOGIN_FIELDS', error: `Please enter ${this.usernameLabel} and ${this.passwordLabel}.` });
     } else if (mode === Mode.REGISTER && !this.validateRegister()) {
-      error = `Please enter ${this.usernameLabel}, ${this.passwordLabel} and Name.`;
-      this.setState({ error });
+      this.setError({ code: 'REQUIRED_REGISTER_FIELDS', error: `Please enter ${this.usernameLabel}, ${this.passwordLabel} and Name.` });
     } else {
       this.setState({ error: '' }, () => {
         // clear error (preact setState callback doesn't work => use setTimeout)
@@ -109,7 +118,7 @@ export default class extends React.Component<IProps> {
   };
 
   render() {
-    const { action, actionRegister, renderTitle } = this.props;
+    const { action, actionRegister, renderTitle, showError = true } = this.props;
     const { mode, username, password, name, error } = this.state;
 
     let formAction = mode === Mode.LOGIN && action ? action : '';
@@ -162,7 +171,7 @@ export default class extends React.Component<IProps> {
           </footer>
         )}
 
-        {error ? <div data-error={true}>{error}</div> : ''}
+        {showError && error ? <div data-error={true}>{error}</div> : ''}
       </form>
     );
   }
