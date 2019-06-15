@@ -6,7 +6,7 @@ interface IProps {
   action?: string;
   actionRegister?: string;
   onSubmit?: (formData: any) => void;
-  values?: any; // example: values={{ username: '...', password: '...' }}
+  initialValues?: any; // example: initialValues={{ username: '...', password: '...' }}
   showError?: boolean; // default true
   onError?: (params: any) => void // callback when error occurs
 }
@@ -31,6 +31,9 @@ export default class extends React.Component<IProps> {
 
   componentWillMount() {
     this.init(this.props);
+    if (this.props.initialValues) {
+      this.setState({ ...this.props.initialValues })
+    }
   }
 
   componentWillReceiveProps(nextProps: any) {
@@ -43,9 +46,7 @@ export default class extends React.Component<IProps> {
     if (href.includes('/register') || href.includes('/sign-up')) {
       this.setState({ mode: Mode.REGISTER });
     }
-    if (props.values) {
-      this.setState({ ...props.values })
-    }
+    if (props) {}
   };
 
   submitForm = (formData: any) => {

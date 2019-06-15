@@ -17,8 +17,7 @@ class Demo extends Component {
           <h1>Advanced demo</h1>
           <PxLogin
             renderTitle={title => <h3>{title}</h3>}
-            values={{ username: 'defaultUsername' }}
-            showError={false}
+            initialValues={{ username: 'defaultUsername' }}
             onError={console.log}
             onSubmit={console.log}
           />

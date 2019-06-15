@@ -1,6 +1,6 @@
 {
   "name": "px-login",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "px-login - React minimal reusable Login Component.",
   "main": "lib/index.js",
   "module": "es/index.js",
